@@ -1,0 +1,16 @@
+DROP DATABASE IF EXISTS CreaturesDB;
+CREATE DATABASE CreaturesDB;
+USE CreaturesDB;
+
+DROP TABLE IF EXISTS Users;
+CREATE TABLE Users(id INT, fistName VARCHAR(20) NOT NULL, 
+age INT, 
+tomb VARCHAR(50));
+
+DROP TABLE IF EXISTS Assets;
+CREATE TABLE Assets(price VARCHAR(20) NOT NULL, 
+age INT, 
+location VARCHAR(50));
+
+SELECT * FROM Users;
+SELECT * FROM Assets;
