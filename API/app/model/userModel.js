@@ -1,7 +1,7 @@
 const db = require("../config/db");
 
 // all users
-export const getUsers = (result) => {
+const getUsers = (result) => {
     db.query("SELECT * FROM Users", (err, results) => {             
         if(err) {
             console.log(err);
@@ -13,7 +13,7 @@ export const getUsers = (result) => {
 }
 
 // single user
-export const getUserById = (id, result) => {
+const getUserById = (id, result) => {
     db.query("SELECT * FROM Users WHERE id = ?", [id], (err, results) => {             
         if(err) {
             console.log(err);
@@ -24,7 +24,7 @@ export const getUserById = (id, result) => {
     });   
 }
 
-export const insertUser = (data, result) => {
+const insertUser = (data, result) => {
     db.query("INSERT INTO Users SET ?", [data], (err, results) => {             
         if(err) {
             console.log(err);
@@ -35,8 +35,19 @@ export const insertUser = (data, result) => {
     });   
 }
 
-export const updateUserById = (data, id, result) => {
-    db.query("UPDATE Users SET firstName = ?, age = ? WHERE id = ?", [data.firstName, data.product_price, id], (err, results) => {             
+const updateUserById = (data, id, result) => {
+    db.query("UPDATE Users SET firstName = ?, age = ? WHERE id = ?", [data.firstName, data.age, id], (err, results) => {             
+        if(err) {
+            console.log(err);
+            result(err, null);
+        } else {
+            result(null, results);
+        }
+    });   
+}
+
+const deleteUserById = (id, result) => {
+    db.query("DELETE FROM Users WHERE id = ?", [id], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);
